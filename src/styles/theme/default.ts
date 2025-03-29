@@ -28,4 +28,4 @@ export const defaultTheme = {
   'button-g': 'bold 0.875rem/1.6 "Roboto", sans-serif',
   'button-m': '0.75rem/1.6 "Roboto", sans-serif',
   tag: '800 0.625rem/1.3 "Roboto", sans-serif',
-}
+} as const
