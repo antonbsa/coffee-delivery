@@ -4,6 +4,7 @@ export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   margin: 2rem 0;
 
   .actionsContainer {
@@ -20,11 +21,11 @@ export const HeaderContainer = styled.header`
       gap: 4px;
       padding: 8px;
 
-      background-color: ${({ theme }) => theme['purple-light']};
+      background-color: ${({ theme }) => theme.colors.purpleLight};
       border-radius: 6px;
 
       svg {
-        color: ${({ theme }) => theme.purple};
+        color: ${({ theme }) => theme.colors.purple};
       }
     }
 
@@ -35,10 +36,10 @@ export const HeaderContainer = styled.header`
       padding: 8px;
       border-radius: 6px;
       border: none;
-      background-color: ${({ theme }) => theme['yellow-light']};
+      background-color: ${({ theme }) => theme.colors.yellowLight};
 
       svg {
-        color: ${({ theme }) => theme['yellow-dark']};
+        color: ${({ theme }) => theme.colors.yellowDark};
       }
     }
   }

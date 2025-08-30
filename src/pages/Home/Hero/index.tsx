@@ -17,9 +17,9 @@ function IntroItem({
   return (
     <span className="intro-item">
       <span className="icon-wrapper" style={{ backgroundColor }}>
-        <Icon size={24} weight="fill" color={theme.white} />
+        <Icon size={24} weight="fill" color={theme.colors.white} />
       </span>
-      {text}
+      <p>{text}</p>
     </span>
   )
 }
@@ -31,22 +31,22 @@ export function Hero() {
     {
       icon: ShoppingCart,
       text: 'Compra simples e segura',
-      backgroundColor: theme['yellow-dark'],
+      backgroundColor: theme.colors.yellowDark,
     },
     {
       icon: Package,
       text: 'Embalagem mantém o café intacto',
-      backgroundColor: theme['base-text'],
+      backgroundColor: theme.colors.baseText,
     },
     {
       icon: Timer,
       text: 'Entrega rápida e rastreada',
-      backgroundColor: theme.yellow,
+      backgroundColor: theme.colors.yellow,
     },
     {
       icon: Coffee,
       text: 'O café chega fresquinho até você',
-      backgroundColor: theme.purple,
+      backgroundColor: theme.colors.purple,
     },
   ]
 
