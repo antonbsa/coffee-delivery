@@ -1,8 +1,9 @@
 import { ShoppingCartSimple, Minus, Plus } from 'phosphor-react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { CardContainer } from './styles'
 import { Coffee } from '../../@types/coffee'
 import { priceOnlyFormatter } from '../../utils/formatter'
+import { CartContext } from '../../contexts/CartContext'
 
 interface CoffeeCardProps {
   coffee: Coffee
@@ -14,14 +15,22 @@ const getCoffeeImage = (imageName: string) => {
 
 export function CoffeeCard({ coffee }: CoffeeCardProps) {
   const [quantity, setQuantity] = useState(1)
+  const { addItem } = useContext(CartContext)
 
-  const handleDecrease = () => {
+  const handleAddToCart = () => {
+    addItem({
+      coffee,
+      quantity,
+    })
+  }
+
+  const handleDecreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity((state) => state - 1)
     }
   }
 
-  const handleIncrease = () => {
+  const handleIncreaseQuantity = () => {
     setQuantity((state) => state + 1)
   }
 
@@ -50,15 +59,15 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
         </p>
         <div className="actions">
           <div className="quantity-button">
-            <button disabled={quantity === 1} onClick={handleDecrease}>
+            <button disabled={quantity === 1} onClick={handleDecreaseQuantity}>
               <Minus weight="bold" size={14} />
             </button>
             <span>{quantity}</span>
-            <button onClick={handleIncrease}>
+            <button onClick={handleIncreaseQuantity}>
               <Plus weight="bold" size={14} />
             </button>
           </div>
-          <button>
+          <button onClick={handleAddToCart}>
             <ShoppingCartSimple weight="fill" color="white" size={22} />
           </button>
         </div>

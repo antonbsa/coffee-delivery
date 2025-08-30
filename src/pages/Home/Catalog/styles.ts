@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CatalogContainer = styled.div`
+export const CatalogContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: 54px;
@@ -13,6 +13,7 @@ export const CatalogContainer = styled.div`
     justify-content: center;
     max-width: fit-content;
     margin: 0 auto;
+    padding-bottom: 32px;
 
     @media (max-width: 1120px) {
       grid-template-columns: repeat(3, 1fr);

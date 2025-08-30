@@ -20,27 +20,51 @@ export const HeaderContainer = styled.header`
 
       gap: 4px;
       padding: 8px;
+      border-radius: 6px;
 
       background-color: ${({ theme }) => theme.colors.purpleLight};
-      border-radius: 6px;
+      color: ${({ theme }) => theme.colors.purpleDark};
 
       svg {
         color: ${({ theme }) => theme.colors.purple};
       }
     }
+  }
+`
 
-    button {
-      display: flex;
-      align-items: center;
+export const CartButton = styled.button<{ itemsCount?: number }>`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 
-      padding: 8px;
-      border-radius: 6px;
-      border: none;
-      background-color: ${({ theme }) => theme.colors.yellowLight};
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.yellowLight};
 
-      svg {
-        color: ${({ theme }) => theme.colors.yellowDark};
-      }
-    }
+  svg {
+    color: ${({ theme }) => theme.colors.yellowDark};
+  }
+
+  position: relative;
+
+  &::after {
+    content: '${({ itemsCount }) => itemsCount || ''}';
+    display: ${({ itemsCount }) => (itemsCount ? 'flex' : 'none')};
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    top: -8px;
+    right: -8px;
+
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+
+    background-color: ${({ theme }) => theme.colors.yellowDark};
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
   }
 `
