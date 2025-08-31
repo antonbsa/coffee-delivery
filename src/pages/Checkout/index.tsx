@@ -13,10 +13,12 @@ import { CartContext } from '../../contexts/CartContext'
 import { getCoffeeImage } from '../../utils/getCoffeeImage'
 import { priceOnlyFormatter } from '../../utils/formatter'
 import { QuantityButton } from '../../components/QuantityButton'
+import { useNavigate } from 'react-router-dom'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, FormProvider } from 'react-hook-form'
 import * as zod from 'zod'
+import { OrderData } from '../../@types/order'
 
 const addressFormSchema = zod.object({
   cep: zod.string().min(8).max(8),
@@ -33,7 +35,9 @@ type AddressFormData = zod.infer<typeof addressFormSchema>
 
 export function Checkout() {
   const theme = useTheme()
-  const { items, updateItemQuantity, removeItem } = useContext(CartContext)
+  const navigate = useNavigate()
+  const { items, updateItemQuantity, removeItem, clearCart } =
+    useContext(CartContext)
 
   const handleIncreaseQuantity = (itemId: number, currentQuantity: number) => {
     updateItemQuantity(itemId, currentQuantity + 1)
@@ -70,8 +74,20 @@ export function Checkout() {
   }
 
   function onOrderConfirmed(data: AddressFormData) {
-    console.log({ data })
+    const orderData: OrderData = {
+      address: {
+        rua: data.rua,
+        numero: data.numero,
+        bairro: data.bairro,
+        cidade: data.cidade,
+        uf: data.uf,
+      },
+      paymentMethod: data.paymentMethod,
+    }
+
+    clearCart()
     reset()
+    navigate('/success', { state: orderData })
   }
 
   const totalItemsPrice = items.reduce(
