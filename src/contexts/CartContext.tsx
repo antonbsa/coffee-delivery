@@ -6,8 +6,7 @@ import {
   useEffect,
 } from 'react'
 import { Coffee } from '../@types/coffee'
-
-const CART_STORAGE_KEY = '@coffee-delivery:cart-1.0.0'
+import { CART_STORAGE_KEY } from '../@types/localStorageKey'
 
 interface CartItem {
   coffee: Coffee
