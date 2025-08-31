@@ -1,6 +1,8 @@
+/* eslint-disable prettier/prettier */
+import { useState } from 'react'
 import { CoffeeCard } from '../../../components/Coffee-card'
 import { CatalogContainer } from './styles'
-import { Coffee } from '../../../@types/coffee'
+import { Coffee, CoffeeTag } from '../../../@types/coffee'
 
 const coffeesCatalog: Coffee[] = [
   {
@@ -121,12 +123,54 @@ const coffeesCatalog: Coffee[] = [
   },
 ]
 
+// Get all unique coffee tags from the catalog
+const getAllCoffeeTags = (): CoffeeTag[] => {
+  const allTags = coffeesCatalog.flatMap((coffee) => coffee.tags)
+  return [...new Set(allTags)] as CoffeeTag[]
+}
+
 export function Catalog() {
+  const coffeeTags = getAllCoffeeTags()
+  const [selectedFilters, setSelectedFilters] = useState<CoffeeTag[]>([])
+
+  const handleFilterToggle = (tag: CoffeeTag) => {
+    setSelectedFilters((prev) => {
+      if (prev.includes(tag)) {
+        // Remove filter if already selected
+        return prev.filter((filter) => filter !== tag)
+      } else {
+        // Add filter if not selected
+        return [...prev, tag]
+      }
+    })
+  }
+
+  // Filter coffees based on selected filters
+  const filteredCoffees =
+    selectedFilters.length === 0
+      ? coffeesCatalog
+      : coffeesCatalog.filter((coffee) =>
+        selectedFilters.some((filter) => coffee.tags.includes(filter)),
+      )
+
   return (
     <CatalogContainer>
-      <h2>Nossos cafés</h2>
+      <div className="header">
+        <h2>Nossos cafés</h2>
+        <div className="filters">
+          {coffeeTags.map((tag) => (
+            <button
+              key={tag}
+              className={selectedFilters.includes(tag) ? 'selected' : ''}
+              onClick={() => handleFilterToggle(tag)}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+      </div>
       <div className="coffee-list">
-        {coffeesCatalog.map((coffee) => (
+        {filteredCoffees.map((coffee) => (
           <CoffeeCard key={coffee.id} coffee={coffee} />
         ))}
       </div>
