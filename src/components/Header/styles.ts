@@ -32,7 +32,7 @@ export const HeaderContainer = styled.header`
   }
 `
 
-export const CartButton = styled.button<{ itemsCount?: number }>`
+export const CartButton = styled.a<{ itemsCount?: number }>`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -53,6 +53,7 @@ export const CartButton = styled.button<{ itemsCount?: number }>`
     display: ${({ itemsCount }) => (itemsCount ? 'flex' : 'none')};
     align-items: center;
     justify-content: center;
+    text-align: center;
 
     position: absolute;
     top: -8px;
@@ -66,5 +67,6 @@ export const CartButton = styled.button<{ itemsCount?: number }>`
     color: white;
     font-size: 12px;
     font-weight: bold;
+    font: ${({ theme }) => theme.fonts.textXs};
   }
 `

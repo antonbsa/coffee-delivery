@@ -1,16 +1,14 @@
-import { ShoppingCartSimple, Minus, Plus } from 'phosphor-react'
+import { ShoppingCartSimple } from 'phosphor-react'
 import { useContext, useState } from 'react'
 import { CardContainer } from './styles'
 import { Coffee } from '../../@types/coffee'
 import { priceOnlyFormatter } from '../../utils/formatter'
 import { CartContext } from '../../contexts/CartContext'
+import { QuantityButton } from '../QuantityButton'
+import { getCoffeeImage } from '../../utils/getCoffeeImage'
 
 interface CoffeeCardProps {
   coffee: Coffee
-}
-
-const getCoffeeImage = (imageName: string) => {
-  return new URL(`../../assets/img/coffees/${imageName}`, import.meta.url).href
 }
 
 export function CoffeeCard({ coffee }: CoffeeCardProps) {
@@ -58,15 +56,11 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
           R$ <span>{priceOnlyFormatter.format(coffee.price)}</span>
         </p>
         <div className="actions">
-          <div className="quantity-button">
-            <button disabled={quantity === 1} onClick={handleDecreaseQuantity}>
-              <Minus weight="bold" size={14} />
-            </button>
-            <span>{quantity}</span>
-            <button onClick={handleIncreaseQuantity}>
-              <Plus weight="bold" size={14} />
-            </button>
-          </div>
+          <QuantityButton
+            quantity={quantity}
+            onIncrease={handleIncreaseQuantity}
+            onDecrease={handleDecreaseQuantity}
+          />
           <button onClick={handleAddToCart}>
             <ShoppingCartSimple weight="fill" color="white" size={22} />
           </button>

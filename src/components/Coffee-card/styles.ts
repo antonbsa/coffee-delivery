@@ -95,46 +95,14 @@ export const CardContainer = styled.div`
         background-color: ${({ theme }) => theme.colors.purpleDark};
         color: ${({ theme }) => theme.colors.baseCard};
 
+        transition: background-color 0.2s;
+
         cursor: pointer;
 
         &:hover {
           background-color: ${({ theme }) => theme.colors.purple};
+          transition: background-color 0.2s;
         }
-      }
-    }
-  }
-
-  .quantity-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-    gap: 8px;
-    padding: 8px;
-    border-radius: 6px;
-    background-color: ${({ theme }) => theme.colors.baseButton};
-
-    span {
-      font: ${({ theme }) => theme.fonts.textM};
-      color: ${({ theme }) => theme.colors.baseTitle};
-    }
-
-    button {
-      display: flex;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-
-      color: ${({ theme }) => theme.colors.purple};
-
-      &:hover:not(:disabled) {
-        color: ${({ theme }) => theme.colors.purpleDark};
-      }
-
-      &:disabled {
-        cursor: not-allowed;
-        opacity: 0.6;
       }
     }
   }

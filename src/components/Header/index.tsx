@@ -10,7 +10,9 @@ export function Header() {
 
   return (
     <HeaderContainer>
-      <img src={Logo} alt="" />
+      <a href="/">
+        <img src={Logo} alt="" />
+      </a>
 
       <div className="actionsContainer">
         <span>
@@ -18,7 +20,7 @@ export function Header() {
           Campo Bom, RS
         </span>
 
-        <CartButton itemsCount={items.length}>
+        <CartButton href="/checkout" itemsCount={items.length}>
           <ShoppingCart size={24} weight="fill" />
         </CartButton>
       </div>
