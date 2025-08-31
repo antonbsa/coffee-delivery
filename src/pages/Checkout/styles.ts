@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CheckoutContainer = styled.div`
+export const CheckoutContainer = styled.form`
   display: flex;
   justify-content: space-between;
 
@@ -59,6 +59,29 @@ export const CheckoutContainer = styled.div`
         grid-column: 2 / -1;
       }
 
+      .complemento-container {
+        grid-column: 2 / -1;
+        position: relative;
+
+        .opcional-placeholder {
+          position: absolute;
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          font:
+            0.75rem/1.3 'Roboto',
+            sans-serif;
+          color: ${({ theme }) => theme.colors.baseLabel};
+          font-style: italic;
+          pointer-events: none;
+          background-color: ${({ theme }) => theme.colors.baseInput};
+        }
+
+        input {
+          width: 100%;
+        }
+      }
+
       .bairro {
         grid-column: 1 / 2;
       }
@@ -102,6 +125,11 @@ export const CheckoutContainer = styled.div`
           outline: 1px solid ${({ theme }) => theme.colors.yellowDark};
           transition: outline 0.2s;
         }
+
+        &.error {
+          outline: 1px solid #e74c3c;
+          background-color: rgba(231, 76, 60, 0.05);
+        }
       }
     }
 
@@ -143,6 +171,15 @@ export const CheckoutContainer = styled.div`
             border: 1px solid ${({ theme }) => theme.colors.purple};
           }
         }
+      }
+
+      .error-alert {
+        display: block;
+        color: red;
+        font-size: 12px;
+        height: 16px;
+        margin-top: 8px;
+        margin-bottom: -24px;
       }
     }
   }

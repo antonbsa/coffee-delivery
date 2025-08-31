@@ -7,3 +7,4 @@ function getStorageKey(key: string) {
 }
 
 export const CART_STORAGE_KEY = getStorageKey('cart')
+export const ADDRESS_FORM_STORAGE_KEY = getStorageKey('addressForm')

@@ -16,11 +16,15 @@ export function QuantityButton({
 }: QuantityButtonProps) {
   return (
     <QuantityButtonContainer>
-      <button disabled={quantity === 1 || disabled} onClick={onDecrease}>
+      <button
+        type="button"
+        disabled={quantity === 1 || disabled}
+        onClick={onDecrease}
+      >
         <Minus weight="bold" size={14} />
       </button>
       <span>{quantity}</span>
-      <button disabled={disabled} onClick={onIncrease}>
+      <button type="button" disabled={disabled} onClick={onIncrease}>
         <Plus weight="bold" size={14} />
       </button>
     </QuantityButtonContainer>
